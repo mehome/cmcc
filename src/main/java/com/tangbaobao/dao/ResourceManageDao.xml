@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangbaobao.dao.ResourceManageDao">
+    <select id="findSectionNoType" resultType="SectionNoType">
+        select * from tb_sectionnotype;
+    </select>
+    <!--添加资源-->
+    <insert id="addResource" parameterType="Resource">
+       INSERT INTO
+       `cmcc`.`tb_resource`
+       ( `resourceId`, `operatorId`, `typeId`, `beganSectionNo`, `endSectionNo` )
+        VALUES
+	    (
+	    #{resourceId},
+	    #{operator.operatorId},
+	    #{type.typeId},
+	    #{beganSectionNo},
+	    #{endSectionNo}
+	       );
+    </insert>
+</mapper>

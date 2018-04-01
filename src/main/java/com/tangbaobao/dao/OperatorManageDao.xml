@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangbaobao.dao.OperatorManageDao">
+    <select id="findUser" parameterType="Operator" resultType="Operator">
+        select * from tb_operator
+        where
+        operatorName =#{operatorName}
+        and
+        operatorPassword =#{operatorPassword}
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangbaobao.dao.AllocateBusinessDao">
+    <select id="loadChargeItems" resultType="Business">
+        SELECT *
+        FROM
+            tb_business
+        WHERE
+            state = 1;
+    </select>
+
+    <select id="loadchargeItems" resultType="Business">
+        SELECT *
+        FROM
+            tb_business
+    </select>
+
+    <insert id="updateChargeDetail">
+        INSERT INTO
+            `cmcc`.`tb_chargedeatil`
+            (`chargeId`, `chargeItemId`, `chargeMoney`)
+        VALUES
+            (
+                #{chargeId},
+                #{business.chargeItemId},
+                #{chargeMoney}
+            );
+    </insert>
+
+    <!--修改收费项目-->
+    <update id="updateChargeItems" parameterType="QueryVo">
+        UPDATE `cmcc`.`tb_business`
+        SET  `state` = '0'
+        WHERE
+
+        <foreach collection="businessList" index="index" separator="," item="bus">
+            #{bus.chargeItemId}
+        </foreach>
+    </update>
+
+</mapper>

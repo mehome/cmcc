@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
+
+    <!--配置扫描Controller包-->
+    <context:component-scan base-package="com.tangbaobao.controller"/>
+
+    <!--配置处理器映射器-->
+    <!--配置处理器适配器-->
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/files/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--开启使用配置注解-->
+    <mvc:annotation-driven/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/index.action"/>
+            <mvc:exclude-mapping path="/login.action"/>
+            <bean class = "com.tangbaobao.interceptor.AccessControl"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>
